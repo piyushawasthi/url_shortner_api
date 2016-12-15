@@ -4,7 +4,7 @@
       <ul class="nav">  
         <% if current_user %>
           <li class="active">
-            <%= link_to "UrlShortner", short_urls_path, :class => 'brand' %>
+            <%= link_to "UrlShortner", short_urls_path, :class => 'brand', "data-turbolinks" => "false" %>
           </li> 
           <li> 
             <%= link_to 'Logout', logout_path, :method=>'delete', :class => 'logout' %>

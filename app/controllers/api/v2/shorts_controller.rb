@@ -1,5 +1,5 @@
 module Api
-	module V1
+	module V2
 		class ShortsController < ApplicationController
 			
 			before_action :set_short, only: [:create]
@@ -10,18 +10,8 @@ module Api
 			def create(user, token, original_url)
 				@short_url = ShortUrl.find_or_initialize_by(original_url: original_url)
 			    @short_url[:user_id] = user.id
-				@short_url.shorten
-				if @short_url.save
-					# render json: { :success => true }
-					respond_with @short_url
-				end
-				# respond_to do |format|
-			 #      if @short_url.save
-			 #        format.json { render :show, status: :created, location: @short }
-			 #      else
-			 #        format.json { render json: @short.errors, status: :unprocessable_entity }
-			 #      end
-			 #    end
+				shorten
+				@short_url
 			end
 
 			def shorten
@@ -55,7 +45,7 @@ module Api
 
 		    # Never trust parameters from the scary internet, only allow the white list through.
 		    def short_params
-		      params.require(:short).permit(:full,:slug)
+		      params.require(:short_url).permit(:original_url, :shorty, :user_id, :visits_count)
 		    end
 
 			def restrict_access
