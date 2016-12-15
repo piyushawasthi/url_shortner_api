@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false
+  pool: 25
+  username: postgres
+  password: postgres
+    
+development:
+  <<: *default
+  database: url_shortner_api_development
+
+test:
+  <<: *default
+  database: url_shortner_api_test
+
+production:
+  <<: *default
+  database: url_shortner_api_production
+  username: url_shortner_api
+  password: <%= ENV['LOCATIONSHARE_DATABASE_PASSWORD'] %>

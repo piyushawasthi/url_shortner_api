@@ -1,0 +1,8 @@
+== README
+
+1. User can sign up if he is a new user, either from /signup.json or /signup
+2. Valid user can login /login or /login.json
+3. Right header gives you the logged in user email, an api token that can be user to check short_urls, short_visits
+and a logout button
+4. Even if you user is not logged in, he can still use his api token to access all the pages
+except login or signup page

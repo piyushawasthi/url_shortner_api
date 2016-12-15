@@ -1,0 +1,35 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">  
+    <div class="container">  
+      <ul class="nav">  
+        <% if current_user %>
+          <li class="active">
+            <%= link_to "UrlShortner", short_urls_path, :class => 'brand' %>
+          </li> 
+          <li> 
+            <%= link_to 'Logout', logout_path, :method=>'delete', :class => 'logout' %>
+          </li>
+          <div class="pull-right" style="margin-top: 10px;">
+            <li> <%= 'Welcome, '+ current_user.email %></li>
+            <li><%= "Your API Token is: #{current_user.api_token}"%></li>
+            <% request.headers['HTTP_AUTHORIZATION'] = "Token token=#{current_user.api_token}" %>
+          </div>
+       <%else%>
+          <li class="active">
+            <%= link_to "UrlShortner", root_path, :class => 'brand' %>
+          </li>
+          <li>
+            <%= link_to 'Sign up', signup_path %>
+          </li>
+          <li>
+           <%= link_to 'Login', '#' %>
+          </li>
+       <% end %>
+    </ul> 
+
+    <ul class = "nav pull-right">
+      <% if current_user %>
+      <% end %>
+    </ul>
+
+</div> 
